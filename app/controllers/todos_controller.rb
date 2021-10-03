@@ -1,7 +1,9 @@
 # todos_controller.rb
 require 'date'
 require 'active_support/all'
+
 class TodosController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def index
     render plain: Todo.order(:due_date).map{|todo| todo.to_pleasant_string}.join("\n")
   end
