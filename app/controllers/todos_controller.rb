@@ -21,6 +21,6 @@ class TodosController < ApplicationController
         completed: false
         )
         response_text = "Hey i am creating new todo eith the id #{new_todo.id}"
-       render plain: " Response Text"
+       render plain: response_text
   end
 end
