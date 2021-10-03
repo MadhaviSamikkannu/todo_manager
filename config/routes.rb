@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  #get "todos", to: "todos#index"
-  #post "todos", to: "todos#create"
-  #get "todos/:id", to: "todos#show"
-  resources :todos
+ # get "users", to: "users#index"
+  post "users/login", to: "users#login"
+  post "users/create", to: "users#create"
+  get "users", to: "users#index"
+  get "users/:id", to: "users#show_user"
+  resources :users
+ # resources :todos
+
 end
