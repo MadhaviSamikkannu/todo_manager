@@ -4,15 +4,26 @@ require 'active_support/all'
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+
   def index
     render plain: Users.all.map{|users| users.to_mgmt_users}.join("\n")
   end
 
-  def show_user
+
+
+  #def show_user1
     #render plain: "Success"
-    user_id = params[:id]
-    user = Users.find(user_id)
-    render plain: user.to_mgmt_users
+    #user_name= params[:name]
+    #user = Users.where("name =?",user_name)
+    #response_text = "True"
+    #render plain: response_text
+  #end
+
+  def show
+   #render plain: "Success"
+   user_id= params[:id]
+   user = Users.find(user_id)
+   render plain: user.to_mgmt_users
   end
 
   def create
@@ -25,28 +36,22 @@ class UsersController < ApplicationController
      password: user_password,
      )
       response_text = "Hey i am creating new name with the id #{new_user.id}"
-     render plain: response_text
+      render plain: response_text
    end
 
-  #def login
-  #  user_email = Users.find_by(email: params[:email])
-  #   if user_email && Users.{params[:password]}
-  #      render plain: "True"
-  #   else
-   #    render plain: "False"
-  #   end
-  #end
 
-  # def update
-  #  id = params[:id]
-   # user_name = params[:name]
-  #  user_email = params[:email]
-   # user_password = params[:password]
-  #  user = Users.find(id)
-    #users.name = user_name
-   # users.email = user_email
-  #  users.password = user_password
-  #  users.save
-   # render plain: " Updated user record status to #{user_name},#{user_email},#{user_password}"
-  #end
+
+  def login
+
+    user_email = Users.where("email =? and password=? ",params[:email],params[:password]).count
+
+    if (user_email==0)
+
+         render plain: "false"
+    else
+        render plain: "true"
+    end
+  end
+
+
 end
