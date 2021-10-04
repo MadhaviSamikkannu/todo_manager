@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
- # get "users", to: "users#index"
   post "users/login", to: "users#login"
   post "users/create", to: "users#create"
   get "users", to: "users#index"
-  get "users/:id", to: "users#show_user"
+  get "users/:id", to: "users#show"
   resources :users
- # resources :todos
+  resources :todos
 
 end
